@@ -127,3 +127,128 @@
     console.log((result1+result2)/2);
 })([1,12,15,26,38],[2,13,17,30,45]);
 
+
+//g. Remove duplicates from an array
+(function(arr){
+    let obj = {};
+    for(let ele of arr) {
+        obj[ele] = 1;
+    }
+    let returnarr = [];
+    for(let ele of arr) {
+        if(obj[ele]===1) {
+            returnarr.push(ele);
+            obj[ele] = 0;
+        }
+    }
+    console.log(returnarr);
+})([1,2,2,5,5,6,8,8,9,1,19,20,19,5]);
+
+//h.Rotate an array by k times
+(function(arr,k){
+    let rotations = k%arr.length;
+    if(rotations == 0){
+        console.log(arr);
+        return;
+    }
+    let point = arr.length-rotations-1;
+    for(let i=0,j=point;i<=j;i++,j--) {
+        let temp = arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    for(let i=point+1,j=arr.length-1;i<=j;i++,j--) {
+        let temp = arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    for(let i=0,j=arr.length-1;i<=j;i++,j--) {
+        let temp = arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    console.log(arr);
+})([1,2,3,4,5,6,7,8,9],3);
+
+
+
+
+//                              ARROW FUNCTIONS
+
+//a. print odd numbers in an array
+let oddnumbers = (numarr) => {
+    let oddnums=[];
+    for(let num of numarr) {
+        if(num%2==1) {
+            oddnums.push(num);
+        }
+    }
+    console.log("odd numbers in array ",oddnums.join(','));
+};
+
+oddnumbers([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,19,21,22,23,25,24,27,29,26]);
+
+//b. Convert all the strings to title caps in a string array
+let CAP_STRINGS = (stringarr) => {
+    let capitalStrings=[];
+    for(let string of stringarr) {
+        capitalStrings.push(string.toUpperCase());
+    }
+    console.log("string in upper case");
+    console.log(capitalStrings.join(","));
+};
+
+CAP_STRINGS((["pavan","Hello","How","are","you","doing","i","will","be","converted","to","capital"]));
+
+//c Sum of all numbers in an array
+let arrsum = (arr) => {
+    let sum=0;
+    arr.forEach((ele)=>{
+        sum+=ele;
+    });
+    return sum;
+}
+
+console.log("sum of elements in array "+arrsum([1,2,22,33,45,67,876,2,3,45,1,54]));
+
+//d. Return all the prime numbers in an array
+let primes = (numarr) => {
+    let primeNumbers=[];
+    for(let num of numarr) {
+        let isprime=true;
+        for(let i=2;i<num;i++) {
+            if(num%i===0) {
+                isprime=false;
+                break;
+            }
+        }
+        if(isprime && num!=1) {
+            primeNumbers.push(num);
+        }
+    }
+    console.log("prime numbers in array");
+    console.log(primeNumbers.join(","));
+};
+
+primes([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,255,273,267,35,45,46,71,27]);
+
+//e. Return all the palindromes in an array
+let palindromes = (stringarr) => {
+    let palindromes=[];
+    for(let str of stringarr) {
+        let ispalindrome = true;
+        for(let i=0,j=str.length-1;i<=j;i++,j--) {
+            if(str[i]!=str[j]) {
+                ispalindrome=false;
+                break
+            }
+        }
+        if(ispalindrome) {
+            palindromes.push(str);
+        }
+    }
+    console.log("palindromes");
+    console.log(palindromes.join(","));
+};
+
+palindromes((["pavan","hi","dad","pebble","aabaa"]));
